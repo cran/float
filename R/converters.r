@@ -2,6 +2,10 @@
 #' 
 #' Convert between a numeric vector/matrix and a float vector/matrix.
 #' 
+#' @details
+#' \code{fl()}, \code{int()}, and \code{dbl()} are shorthand for
+#' \code{as.float()}, \code{as.integer()}, and \code{as.double()}, respectively.
+#' 
 #' @param x
 #' A numeric or float vector/matrix.
 #' @param strict
@@ -43,6 +47,10 @@ fl = function(x, strict=FALSE)
   }
   
   d = .Call(R_mat2spm, x)
+  dimnames(d) = dimnames(x)
+  if (!is.null(names(x)))
+    names(d) = names(x)
+  
   float32(d)
 }
 
@@ -63,7 +71,12 @@ dbl = function(x, strict=FALSE)
     }
   }
   
-  .Call(R_spm2mat, DATA(x))
+  ret = .Call(R_spm2mat, DATA(x))
+  dimnames(ret) = dimnames(x)
+  if (!is.null(names(x)))
+    names(ret) = names(x)
+  
+  ret
 }
 
 #' @rdname converters
@@ -83,8 +96,33 @@ int = function(x, strict=FALSE)
     }
   }
   
-  .Call(R_spm2int, DATA(x))
+  ret = .Call(R_spm2int, DATA(x))
+  dimnames(ret) = dimnames(x)
+  if (!is.null(names(x)))
+    names(ret) = names(x)
+  
+  ret
 }
+
+
+
+#' @rdname converters
+#' @export
+as.float = fl
+
+#' @rdname converters
+#' @method as.double float32
+#' @export
+as.double.float32 = function(x, ...) dbl(x)
+
+#' @rdname converters
+#' @method as.integer float32
+#' @export
+as.integer.float32 = function(x, ...) int(x)
+
+#' @rdname converters
+#' @export
+setMethod("as.numeric", signature(x="float32"), function(x, ...) dbl(x))
 
 
 

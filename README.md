@@ -1,7 +1,7 @@
 # float
 
-* **Version:** 0.1-1
-* **Status:** [![Build Status](https://travis-ci.org/wrathematics/float.png)](https://travis-ci.org/wrathematics/float)
+* **Version:** 0.2-0
+* **Status:** [![Linux Build Status via Travis-CI](https://travis-ci.org/wrathematics/float.png)](https://travis-ci.org/wrathematics/float) [![Windows build status via AppVeyor](https://ci.appveyor.com/api/projects/status/github/wrathematics/float?branch=master&svg=true)](https://ci.appveyor.com/project/wrathematics/float/branch/master)
 * **License:** [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
 * **Author:** Drew Schmidt
 * **Project home**: https://github.com/wrathematics/float
@@ -12,7 +12,7 @@
 
 A matrix of floats should use about half as much memory as a matrix of doubles, and your favorite matrix routines will generally compute about twice as fast on them as well.  However, the results will not be as accurate, and are much more prone to roundoff error/mass cancellation issues.  Statisticians have a habit of over-hyping the dangers of roundoff error in this author's opinion.  If your data is [well-conditioned](https://en.wikipedia.org/wiki/Condition_number), then using floats is "probably" fine for many applications.  
 
-Type promotion always defaults to the higher precision.  So if a float matrix operates with an integer matrix, the integer matrix will be cast to a float first. Likewise if a float matrix operates with a double matrix, the float will be cast to a double first.  Similarly, any float matrix that is explicitly converted to a "regular" matrix will be stored in double precision.
+⚠️ **WARNING** ⚠️ type promotion always defaults to the higher precision.  So if a float matrix operates with an integer matrix, the integer matrix will be cast to a float first. Likewise if a float matrix operates with a double matrix, the float will be cast to a double first.  Similarly, any float matrix that is explicitly converted to a "regular" matrix will be stored in double precision.
 
 
 
@@ -29,9 +29,6 @@ install.package("float")
 The development version is maintained on GitHub, and can easily be installed by any of the packages that offer installations from GitHub:
 
 ```r
-### Pick your preference
-devtools::install_github("wrathematics/float")
-ghit::install_github("wrathematics/float")
 remotes::install_github("wrathematics/float")
 ```
 
@@ -39,6 +36,19 @@ remotes::install_github("wrathematics/float")
 If you are installing on Windows and wish to get the best performance, then you will need to install from source after editing some files.  After installing high-performance BLAS and LAPACK libraries, delete the text `$(LAPACK_OBJS)` from line in `src/Makevars.win` beginning with `OBJECTS = `.  You will also need to add the appropriate link line.  This will ensure that on building, the package links with your high-performance libraries instead of compiling the reference versions.  This is especially important for 32-bit Windows where the internal LAPACK and BLAS libraries are built without compiler optimization because of a compiler bug.
 
 Also, if you are using Windows on big endian hardware (I'm not even sure if this is possible), then you will need to change the 0 in `src/windows/endianness.h` to a 1. Failure to do so will cause very bizarre things to happen with the NA handlers.
+
+
+
+## Creating, Casting, and Type
+
+Before we get to the main usage of the package and its methods, 
+
+* To cast TO a float (convert an existing numeric vector/matrix), use `as.float()` (or its shorthand `fl()`).
+* To cast FROM a float, use `as.double()` or `as.integer()` (or their shorthands, `dbl()` and `int()`).
+* To pre-allocate a float vector of 0's (like `integer(5)`), use `float()`.
+* To construct a float32 object (developes only; see the vignette), use `float32()`.
+
+R has a generic number type "numeric" which encompasses integers and doubles. The function `is.numeric()` will `FALSE` for float vectors/matries. Similarly, `as.numeric()` will return the data cast as double.
 
 
 
@@ -63,6 +73,7 @@ Is something missing?  Please [let me know](https://github.com/wrathematics/floa
 | `nrow()`, `ncol()`, `dim()` | done |
 | `object.size()` | done |
 | `print()` | done |
+| `rep()` | done |
 | `scale()` | Available for logical `center` and `scale` |
 | `str()` | done |
 | `sweep()` | Available for `FUN`'s `"+"`, `"-"`, `"*"`, and `"/"`. Others impossible(?) | 
