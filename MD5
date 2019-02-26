@@ -1,10 +1,10 @@
-7da59b002263ba5f4cc4fc810f4eaa69 *ChangeLog
-6a0d003f4847b3145dc2b07c2411bbc1 *DESCRIPTION
+77bea6349cd9a10f0924770294202b3c *ChangeLog
+b64f019849c09d46c56956596b862a01 *DESCRIPTION
 d3a69fef37ec6d567caf5fb842afff67 *LICENSE
-2ba1234ada506d5165f025008d7c6abf *NAMESPACE
+cd4671b41957e1533ebff177bec2494b *NAMESPACE
 174837ff7f24360d01ef0259aaadb0c9 *R/00-classes.r
 99421df6f50067e36a5bb11d573ad24f *R/01-constructor.r
-431b4169ebb9a56eb390edc8fd759acf *R/02-flags.r
+b0212ad0350e5b58b0e2cb8d6f71f134 *R/02-flags.r
 0174d2081c23f8e85a98269762ebece8 *R/backsolve.r
 08b49e2a6c181feeaca0f0daffa72449 *R/binary.r
 88726bb69e301a23a72b3d6c778d44e7 *R/bind.r
@@ -33,6 +33,7 @@ f5bd5b89acc19505acb8603ad7279df0 *R/print.r
 2f72c0ed3d4ee66891a98f100f330913 *R/rand.r
 26afcc9da15ea426481535193de8877b *R/rep.r
 2d79a7970f97b11767b630d6ac845515 *R/scale.r
+5fccecbdd72bfdb977acaa7c376ae744 *R/sign.r
 7c2ea553aa4a48c1f9a6f9f992b227b1 *R/solve.r
 866c5cc64742c96d38eef7d15e936b99 *R/special.r
 85e9ff8ea08307092edd0b1c325551b7 *R/str.r
@@ -41,7 +42,7 @@ d4a15c4343bbfe21fc7c8d1e3d14e9b7 *R/svd.r
 b1af1418b75d865d570ba79a037c26b6 *R/sweep.r
 cae97807bfdd74f188fa89a1651aadaf *R/xpose.r
 d6b92cb5675673e3c627b2a888b1760d *R/zzz.r
-fca2b241bec004cfb3c82c80badb371f *README.md
+6434734d9ea2d63db8202a34b79b61bf *README.md
 8d00f7ae79ad748cff4406d91f327cab *cleanup
 d03b6afbaa28d29094a943da5de2838a *configure
 f765f2d0dc29cbcb11bb16d9989a7b51 *configure.ac
@@ -96,6 +97,7 @@ f1786c981684d77e641c904b2f24bec2 *man/print-float32.Rd
 1bbfdce464dd8212b400b892cf55ace9 *man/rep.Rd
 7e5ead528551bc4f9236fd39c326a0b4 *man/round.Rd
 3e2a23c223316250164c057a931fc514 *man/scale.Rd
+8bbe8d12def25e05e1c38515d087374c *man/sign.Rd
 72c38f76684b13e4560acf76050b3884 *man/solve.Rd
 657037cb553b2871886921b5c19db45d *man/specialmath.Rd
 a20bfa44a894f56cdcc28d6a62119f3b *man/sum.Rd
@@ -103,7 +105,7 @@ a20bfa44a894f56cdcc28d6a62119f3b *man/sum.Rd
 8acd42655c1c0dda4070356e992dd311 *man/sweep.Rd
 9627578858e2e9548a6e0e40eb891e72 *man/trig.Rd
 d0909da36b7998df64cad10c7c5a615a *man/xpose.Rd
-eeeec60e7249feba53e0bcebdd25bbb0 *src/Makevars.in
+097448c88062bbc03aa98e00e2871b2e *src/Makevars.in
 4cf4717c01f9c6ed7d2051ce139c92e9 *src/Makevars.win
 6b150aacebabe070138caa8955356e7c *src/NA.c
 68cfd5eba830972f18210d073531d93e *src/NA.h
@@ -120,7 +122,7 @@ b3288f751e1688d9df6f4e9b659c6f14 *src/crossprod.c
 90e5964acde6cba20ae0e1310efc15a3 *src/eigen.c
 20a20e52a8b0b27da6e1ddfdd6ccdddb *src/endianness.h.in
 fe9ed741089cb379b2e8ae354ef46c07 *src/extremes.c
-ed841a8521ea4e833e2ce2605ca8fa52 *src/float_native.c
+b97d927dfd3ad1eac00e8f2593ff125e *src/float_native.c
 1679f748268664bcf2cccb8597c7fba4 *src/install.libs.R
 45462540e528194142db6d4c2aacbb22 *src/isSymmetric.c
 930f8aa500a47c7dab0f8efb5a1c9a40 *src/lapack/LICENSE
@@ -141,6 +143,7 @@ c9f4447e34ee5c658c7938f338c4e8d7 *src/norm.h
 91ac54d4f6460893a1bc007c1b6f6458 *src/rand.c
 216b5b1f0a6d8c7b0515ba396ad5090d *src/safeomp.h
 313a22b3e27830db33f863cc77af9535 *src/scale.c
+733639e570847270c79d89814acb8f79 *src/sign.c
 cc9aede51adb489f5f9122f81c5b758d *src/slapack_wrap.f
 812383caf48f7667a8d9f9e8790bea97 *src/solve.c
 b48e1bfc8b52a820a44e189d01958eac *src/sum.c
@@ -175,6 +178,7 @@ bb9a178bd6d644728d01e27f5b357477 *tests/qr.r
 bd80bcad5679ee1b81207dfef143d48e *tests/rand.r
 31ead1e19f27d392aa57a5d416fa7922 *tests/rep.r
 f846c936aa35bd8f50bd24dcd75c4f7e *tests/scale.r
+54c06e773a2874120752bd9e2c3f8ccf *tests/sign.r
 08e4ba781751c94411ef10927f1ef0b9 *tests/solve.r
 b5d05f63ea8e496b5868733383d3b259 *tests/sum.r
 baeead137baa4f93805cce67c3d63592 *tests/svd.r

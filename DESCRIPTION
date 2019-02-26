@@ -1,7 +1,7 @@
 Package: float
 Type: Package
 Title: 32-Bit Floats
-Version: 0.2-1
+Version: 0.2-2
 Description: R comes with a suite of utilities for linear algebra with "numeric"
     (double precision) vectors/matrices. However, sometimes single precision (or
     less!) is more than enough for a particular task.  This package extends R's
@@ -34,10 +34,10 @@ Authors@R: c(
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
 RoxygenNote: 6.1.0
 NeedsCompilation: yes
-Packaged: 2018-12-07 11:00:21 UTC; mschmid3
+Packaged: 2019-02-26 01:02:47 UTC; mschmid3
 Author: Drew Schmidt [aut, cre, cph],
   Wei-Chen Chen [aut],
   Dmitriy Selivanov [ctb] (improvements in external package linking),
   ORNL [cph]
 Repository: CRAN
-Date/Publication: 2018-12-07 11:40:03 UTC
+Date/Publication: 2019-02-26 12:50:03 UTC
