@@ -1,5 +1,7 @@
 AC_PREREQ([2.69])
-AC_INIT(DESCRIPTION)
+AC_INIT
+AC_CONFIG_SRCDIR([DESCRIPTION])
+AC_CONFIG_HEADERS(src/config.h)
 
 # Get C compiler from R
 : ${R_HOME=`R RHOME`}
@@ -10,14 +12,10 @@ fi
 CC=`"${R_HOME}/bin/R" CMD config CC`
 CFLAGS=`"${R_HOME}/bin/R" CMD config CFLAGS`
 CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
-CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
-CXX=`"${R_HOME}/bin/R" CMD config CXX`
 LDFLAGS=`"${R_HOME}/bin/R" CMD config LDFLAGS`
 
 
 AC_PROG_CC
-AC_PROG_CC_C99
-AC_PROG_CXX
 AC_CHECK_LIB(m, [sinf], [], 
   [AC_MSG_ERROR([float math functions unavailable])]
 )
@@ -159,8 +157,7 @@ echo " "
 
 
 AC_SUBST(BOBE)
-AC_OUTPUT(src/endianness.h)
-
 AC_SUBST(ADD_OBJS)
 AC_SUBST(OMPFLAGS_C)
-AC_OUTPUT(src/Makevars)
+AC_CONFIG_FILES([src/Makevars src/endianness.h])
+AC_OUTPUT
