@@ -4909,7 +4909,7 @@
 *
 *        Compute Householder transform when N=1
 *
-         CALL SLARFG( N, A, A( 1, MIN( 2, N ) ), LDA, T )
+         CALL SLARFG( N, A, A( 1, MIN( 2, N ) ), LDA, T(1,1) )
 *
       ELSE
 *

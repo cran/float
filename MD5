@@ -1,5 +1,5 @@
 5f09b1097d91471a3757c58e9a8df159 *ChangeLog
-cce6719cd90bcc45f502939aebc29e04 *DESCRIPTION
+11ecc16bb761adc3a310c20fbf178a15 *DESCRIPTION
 d3a69fef37ec6d567caf5fb842afff67 *LICENSE
 dee65667d92f4e94a75c0294d36e606b *NAMESPACE
 174837ff7f24360d01ef0259aaadb0c9 *R/00-classes.r
@@ -134,7 +134,7 @@ f51fef437f537951a1260120e503688e *src/lapack/ilas.f
 1856875354c6735affa437724e343efc *src/lapack/slamchf77.f
 e724e167c331b61c82335114cd7cc55d *src/lapack/slapack1.f
 6bdd07d2791ad7dde83be6234cb4b959 *src/lapack/slapack2.f
-9587ce34bcb43fe66c698b8e6e23b6ab *src/lapack/slapack3.f
+0681bbfae6c4e8ddaea7a6a5c1defadc *src/lapack/slapack3.f
 dee2ba7ca968b4ef9705c5c2c728675b *src/lapack/slapack4.f
 30fdbceb9f13a2df11d06532985891e5 *src/machine.c
 09ab81e858fb50077c8bb852675a3635 *src/math.c
