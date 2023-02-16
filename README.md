@@ -1,8 +1,7 @@
 # float
 
-* **Version:** 0.3-0
-* **Status:** [![Linux Build Status via Travis-CI](https://travis-ci.org/wrathematics/float.png)](https://travis-ci.org/wrathematics/float) [![Windows build status via AppVeyor](https://ci.appveyor.com/api/projects/status/github/wrathematics/float?branch=master&svg=true)](https://ci.appveyor.com/project/wrathematics/float/branch/master)
-* **License:** [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause)
+* **Version:** 0.3-1
+* **License:** [BSD 2-Clause](https://opensource.org/license/bsd-2-clause/)
 * **Project home**: https://github.com/wrathematics/float
 * **Bug reports**: https://github.com/wrathematics/float/issues
 
@@ -22,7 +21,7 @@ The package requires the single precision BLAS/LAPACK routines which are not inc
 To install the R package, run:
 
 ```r
-install.package("float")
+install.packages("float")
 ```
 
 The development version is maintained on GitHub:

@@ -1,3 +1,3 @@
-blas_ldflags_nix = function() "-lopenblas"
+blas_ldflags_nix = function() ""
 
-lapack_ldflags_nix = function() "-lopenblas"
+lapack_ldflags_nix = function() ""

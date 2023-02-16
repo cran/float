@@ -3,13 +3,33 @@ AC_INIT
 AC_CONFIG_SRCDIR([DESCRIPTION])
 AC_CONFIG_HEADERS(src/config.h)
 
+: ${R_HOME=`R RHOME`}
+if test -z "${R_HOME}"; then
+  echo "could not determine R_HOME"
+  exit 1
+fi
+
+R_SCMD="${R_HOME}/bin/R CMD config"
+
+# Get C compiler from R
+CC=`${R_SCMD} CC`
+CFLAGS=`${R_SCMD} CFLAGS`
+CPPFLAGS=`${R_SCMD} CPPFLAGS`
+LDFLAGS=`${R_SCMD} LDFLAGS`
+
+FC=`${R_SCMD} FC`
+FLIBS=`${R_SCMD} FLIBS`
+
+# Obtain BLAS/LAPACK libs from R.
+BLAS_LIBFLAGS=`${R_SCMD} BLAS_LIBS`
+LAPACK_LIBFLAGS=`${R_SCMD} LAPACK_LIBS`
+
 
 
 # ------------------------------------------------------------------------------
 # Check for various system deps/requirements
 # ------------------------------------------------------------------------------
 
-AC_PROG_CC
 AC_CHECK_LIB(m, [sinf], [], 
   [AC_MSG_ERROR([float math functions unavailable])]
 )
@@ -65,23 +85,6 @@ AC_CHECK_PROG([grep_ok], [grep], [yes], [no], ,)
 # These can be present/absent in almost any imaginable combination. For example,
 # OpenBLAS (and others?) ship LAPACK symbols in the blas.[so|dylib|dll] file.
 
-# Get C compiler from R
-: ${R_HOME=`R RHOME`}
-if test -z "${R_HOME}"; then
-  echo "could not determine R_HOME"
-  exit 1
-fi
-CC=`"${R_HOME}/bin/R" CMD config CC`
-CFLAGS=`"${R_HOME}/bin/R" CMD config CFLAGS`
-CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
-LDFLAGS=`"${R_HOME}/bin/R" CMD config LDFLAGS`
-
-
-# Obtain BLAS/LAPACK libs from R.
-R_SCMD="${R_HOME}/bin/R CMD config"
-BLAS_LIBFLAGS=`${R_SCMD} BLAS_LIBS`
-LAPACK_LIBFLAGS=`${R_SCMD} LAPACK_LIBS`
-
 # Check libRblas and libRlapack first
 HAVE_SP_BLAS="no"
 if test "X${echo_ok}" = "Xyes" -a "X${grep_ok}" = "Xyes"; then
@@ -89,8 +92,8 @@ if test "X${echo_ok}" = "Xyes" -a "X${grep_ok}" = "Xyes"; then
   if test "X${USE_R_BLAS}" != "X"; then
     LDFLAGS_OLD="${LDFLAGS}"
     LDFLAGS="${LDFLAGS} ${BLAS_LIBFLAGS}"
-    AC_CHECK_LIB(Rblas, [sgemm_], [HAVE_SP_BLAS=yes], [HAVE_SP_BLAS=no])
-    AC_CHECK_LIB(Rblas, [sgetrf_], [HAVE_SP_LAPACK=yes], [HAVE_SP_LAPACK=no])
+    AC_CHECK_LIB(Rblas, [sgemm_], [HAVE_SP_BLAS=yes], [HAVE_SP_BLAS=no], [${FLIBS}])
+    AC_CHECK_LIB(Rblas, [sgetrf_], [HAVE_SP_LAPACK=yes], [HAVE_SP_LAPACK=no], [${FLIBS}])
     LDFLAGS="${LDFLAGS_OLD}"
     
     if test "X${HAVE_SP_BLAS}" = "Xyes"; then
@@ -112,7 +115,7 @@ if test "X${HAVE_SP_LAPACK}" = "X" -o "X${HAVE_SP_LAPACK}" = "Xno"; then
     if test "X${USE_R_LAPACK}" != "X"; then
       LDFLAGS_OLD="${LDFLAGS}"
       LDFLAGS="${LDFLAGS} ${LAPACK_LIBFLAGS}"
-      AC_CHECK_LIB(Rlapack, [sgetrf_], [HAVE_SP_LAPACK=yes], [HAVE_SP_LAPACK=no])
+      AC_CHECK_LIB(Rlapack, [sgetrf_], [HAVE_SP_LAPACK=yes], [HAVE_SP_LAPACK=no], [${FLIBS}])
       LDFLAGS="${LDFLAGS_OLD}"
       
       if test "X${HAVE_SP_LAPACK}" = "Xyes"; then
@@ -122,6 +125,7 @@ if test "X${HAVE_SP_LAPACK}" = "X" -o "X${HAVE_SP_LAPACK}" = "Xno"; then
     fi
   fi
 fi
+
 
 # Check the system if checking R failed
 BLAS_LIBFLAGS=""
@@ -147,7 +151,7 @@ if test "X${HAVE_SP_BLAS}" = "Xno"; then
   fi
 fi
 if test "X${HAVE_SP_BLAS}" = "Xno"; then
-  AC_CHECK_LIB(blas, [sgemm_], [HAVE_SP_BLAS=yes], [HAVE_SP_BLAS=no])
+  AC_CHECK_LIB(blas, [sgemm_], [HAVE_SP_BLAS=yes], [HAVE_SP_BLAS=no], [${FLIBS}])
   if test "X${HAVE_SP_BLAS}" = "Xyes"; then
     BLAS_LIBFLAGS="-lblas"
     BLAS_REPORT="using system BLAS library"
@@ -177,7 +181,7 @@ if test "X${HAVE_SP_LAPACK}" = "Xno"; then
   fi
 fi
 if test "X${HAVE_SP_LAPACK}" = "Xno"; then
-  AC_CHECK_LIB(lapack, [sgetrf_], [HAVE_SP_LAPACK=yes], [HAVE_SP_LAPACK=no])
+  AC_CHECK_LIB(lapack, [sgetrf_], [HAVE_SP_LAPACK=yes], [HAVE_SP_LAPACK=no], [${FLIBS}])
   if test "X${HAVE_SP_LAPACK}" = "Xyes"; then
     LAPACK_LIBFLAGS="-llapack"
     LAPACK_REPORT="using system LAPACK library"
