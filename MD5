@@ -1,5 +1,5 @@
-16f8d13bddc1b28f85d094777704a5dc *ChangeLog
-71f374282b91049cd7a06e21c76394f8 *DESCRIPTION
+bc08be14685863241cf5dbe521fe7130 *ChangeLog
+908a16259780b3cd9a1fcb5b1e32297c *DESCRIPTION
 e1e63a48a9986a80de3235ebc03a60b1 *LICENSE
 dee65667d92f4e94a75c0294d36e606b *NAMESPACE
 174837ff7f24360d01ef0259aaadb0c9 *R/00-classes.r
@@ -44,7 +44,7 @@ d4a15c4343bbfe21fc7c8d1e3d14e9b7 *R/svd.r
 b1af1418b75d865d570ba79a037c26b6 *R/sweep.r
 cae97807bfdd74f188fa89a1651aadaf *R/xpose.r
 7161ec716a1ff9de2953713685b68c22 *R/zzz.r
-62511f9feb0e54d74e22aadd9486186e *README.md
+d0bc10be7854cbb2e96faee0afb2a407 *README.md
 f3c18ea54ed9ce74fdd5bb65f63114e0 *cleanup
 d678c9e5e5ffef4d87eaedc926032f20 *configure
 4f6ede1d67e57f0768bbdabf7600fdca *configure.ac
@@ -114,14 +114,14 @@ baff66b562eb93fc14ac75a9ccf9e67b *src/Makevars.ucrt
 0283b747941102c0167a580e40c7cbfa *src/NA.h
 70f2eec98a6884f2b12df49d6380c5f3 *src/Rfloat.h
 43315451059ffc17e36c7dd8ed3d7a04 *src/backsolve.c
-a18ddc55a170081b07e5a35faf479472 *src/binary.c
+537380c0a42983f0f4b94c3b7839c642 *src/binary.c
 c72ef7427d917b63eb6a82d7714cd1fe *src/blocksize.h
 ed0270e182cfc3cca372aa38ca5a8625 *src/chol.c
 11d3dd925d48a7593b25aa845d0fefea *src/chol2inv.c
 39dc62aebd8af8d26333490bf7455c1d *src/colSums.c
 f065e2b6c6a00eca26ae2e07178ac303 *src/cond.c
 12aa5545e5a357072aaaa717f51bb5b4 *src/config.h.in
-f900e19cced70c322d8c903a1e66382b *src/converters.c
+4b7d53e8073ffef6b0a318073881d523 *src/converters.c
 abae761119c7b1ce980c12c5dd18d366 *src/crossprod.c
 ecffaabe6b76591c155598cccf1392ec *src/eigen.c
 20a20e52a8b0b27da6e1ddfdd6ccdddb *src/endianness.h.in
@@ -153,7 +153,7 @@ e709c3f9ea36a7f9ad85005f4ac63679 *src/qr.c
 920c2a44e7f1d06224018d91ede0bab0 *src/scale.c
 4eedb6c302230a934b0350f207aee6e4 *src/sign.c
 cc9aede51adb489f5f9122f81c5b758d *src/slapack_wrap.f
-e37258eaeebfe7bcc7bb739cbd42288b *src/solve.c
+4bc1eea0c53920a6eeee88bb82b022b3 *src/solve.c
 f764d40cc0e8d3d5c39c29a4757c23de *src/sum.c
 fa736ca080ce7d62d7f9f5a2b97baf58 *src/svd.c
 cab215eb46752959a67872a01dd267f6 *src/sweep.c
