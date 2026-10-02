@@ -201,9 +201,6 @@ setMethod("^", signature(e1="BaseLinAlg", e2="float32"), pow.float)
 #' 
 #' Binary comparison operators for numeric/float matrices.
 #' 
-#' @param e1,e2
-#' Numeric/float vectors/matrices.
-#' 
 #' @return
 #' A vector/matrix of logicals.
 #' 

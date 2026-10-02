@@ -36,6 +36,10 @@
   const float_len_t n = (float_len_t) NCOLS(x); \
   const size_t ny = (size_t) NROWS(y); \
   const size_t dimprod = (size_t)m*n; \
+  if (dimprod == 0) \
+    return newmat(m, n); \
+  if (ny == 0) \
+    return newvec(0); \
   PROTECT(ret = newmat(m, n)); \
   float *xf = FLOAT(x); \
   float *yf = FLOAT(y); \
@@ -58,6 +62,10 @@
   const float_len_t n = (float_len_t) NCOLS(y); \
   const size_t nx = (size_t) NROWS(x); \
   const size_t dimprod = (size_t)m*n; \
+  if (dimprod == 0) \
+    return newmat(m, n); \
+  if (nx == 0) \
+    return newvec(0); \
   PROTECT(ret = newmat(m, n)); \
   float *xf = FLOAT(x); \
   float *yf = FLOAT(y); \
@@ -80,6 +88,8 @@
   const size_t ny = (size_t) NROWS(y)*NCOLS(y); \
   const size_t nret = MAX(nx, ny); \
   \
+  if (nx == 0 || ny == 0) \
+    return newvec(0); \
   if ((nx > ny && nx%ny != 0) || (nx < ny && ny%nx != 0)) \
     WARN_LEN; \
   \
@@ -129,6 +139,10 @@
   const size_t ny = (size_t) NROWS(y); \
   const size_t dimprod = (size_t)m*n; \
   SEXP ret; \
+  if (dimprod == 0) \
+    return allocMatrix(LGLSXP, m, n); \
+  if (ny == 0) \
+    return allocVector(LGLSXP, 0); \
   PROTECT(ret = allocMatrix(LGLSXP, m, n)); \
   float *xf = FLOAT(x); \
   float *yf = FLOAT(y); \
@@ -157,6 +171,10 @@
   const size_t nx = (size_t) NROWS(x); \
   const size_t dimprod = (size_t)m*n; \
   SEXP ret; \
+  if (dimprod == 0) \
+    return allocMatrix(LGLSXP, m, n); \
+  if (nx == 0) \
+    return allocVector(LGLSXP, 0); \
   PROTECT(ret = allocMatrix(LGLSXP, m, n)); \
   float *xf = FLOAT(x); \
   float *yf = FLOAT(y); \
@@ -185,6 +203,8 @@
   const size_t nret = MAX(nx, ny); \
   SEXP ret; \
   \
+  if (nx == 0 || ny == 0) \
+    return allocVector(LGLSXP, 0); \
   if ((nx > ny && nx%ny != 0) || (nx < ny && ny%nx != 0)) \
     WARN_LEN; \
   \
@@ -418,6 +438,10 @@ static inline SEXP pow_matvec(SEXP x, SEXP y)
   const float_len_t n = NCOLS(x);
   const size_t ny = NROWS(y);
   const size_t dimprod = (size_t)m*n;
+  if (dimprod == 0)
+    return newmat(m, n);
+  if (ny == 0)
+    return newvec(0);
   PROTECT(ret = newmat(m, n));
   float *xf = FLOAT(x);
   float *yf = FLOAT(y);
@@ -442,6 +466,10 @@ static inline SEXP pow_vecmat(SEXP x, SEXP y)
   const float_len_t n = NCOLS(y);
   const size_t nx = NROWS(x);
   const size_t dimprod = (size_t)m*n;
+  if (dimprod == 0)
+    return newmat(m, n);
+  if (nx == 0)
+    return newvec(0);
   PROTECT(ret = newmat(m, n));
   float *xf = FLOAT(x);
   float *yf = FLOAT(y);
@@ -466,6 +494,8 @@ static inline SEXP pow_vecvec(SEXP x, SEXP y)
   const size_t ny = (size_t) NROWS(y)*NCOLS(y);
   const size_t nret = MAX(nx, ny);
   
+  if (nx == 0 || ny == 0)
+    return newvec(0);
   if ((nx > ny && nx%ny != 0) || (nx < ny && ny%nx != 0))
     WARN_LEN;
   

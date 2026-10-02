@@ -3,9 +3,6 @@
 \name{comparison}
 \alias{comparison}
 \title{comparison}
-\arguments{
-\item{e1, e2}{Numeric/float vectors/matrices.}
-}
 \value{
 A vector/matrix of logicals.
 }

@@ -23,6 +23,7 @@
 #' @useDynLib float R_rcond_spm
 #' @name rcond
 #' @rdname rcond
+#' @aliases rcond,float32,ANY-method
 NULL
 
 

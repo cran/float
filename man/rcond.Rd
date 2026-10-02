@@ -2,6 +2,7 @@
 % Please edit documentation in R/cond.r
 \name{rcond}
 \alias{rcond}
+\alias{rcond,float32,ANY-method}
 \alias{rcond,float32-method}
 \title{rcond}
 \usage{

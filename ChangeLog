@@ -1,3 +1,13 @@
+Release 0.3-4:
+  * Handle empty float operands in arithmetic and comparisons without crashing.
+  * Test empty vectors, zero-dimension matrices, and uneven recycling.
+  * Remove unreachable pre-R-3.6 macOS startup code.
+  * Document the full rcond S4 method signature for R-devel checks.
+  * Remove an unused argument section from the comparison help page.
+  * Add the missing RcppArmadillo vignette bibliography entry.
+  * Update the Intel MKL vignette link to its current URL.
+  * Set Stefano Cacciatore as the package maintainer.
+
 Release 0.3-3:
   * Remove bash-isms from configure.ac
   * Add integer type casts for clang 16
